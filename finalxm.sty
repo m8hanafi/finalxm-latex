@@ -28,7 +28,7 @@
 %% v1.9 renewcommand newparten, newpartenx, translation, & add newcommand translationbf
 %% v2.0 include framed package and a lot of new commands. \makecoverend, \newpartbmx, \figurebm, \figurecaption, \tablecaption, \jadualbf, \arraystretch{value}, \figuretablenumnopart, \figuretablenum, \parten, \partbm, \question{}, \question{[CO1, PO1]}, \partQuestion{}, \partQuestion{[CO1, PO1]}
 %% v2.1 make options for standard, ppkas, ppkb. Make a switch for figure/table numbering to include part & question. 
-%% v2.2 redefine \question{} and \partQuestion{} to include label for \ref. added xparse package
+%% v2.2 redefine \question{} and \partQuestion{} to include label for \ref. added xparse package. adjust enumerate itemsep=1pc. 
 %%
 %\RequirePackage[malay]{babel}
 %\RequirePackage{translations}
@@ -337,12 +337,12 @@
 
 % begin enumerate list, default spacing
 \newcommand{\listbegin}{
-	\begin{enumerate}[parsep=0pt]
+	\begin{enumerate}[parsep=0pt, itemsep=1pc]
 }	
 
 % begin list, no spacing before the list
 \newcommand{\listbeginx}{
-	\begin{enumerate}[topsep=0pt, parsep=0pt]
+	\begin{enumerate}[topsep=0pt, parsep=0pt, itemsep=1pc]
 	}	
 	
 % close enumerate		
