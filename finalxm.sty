@@ -8,7 +8,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/06/01]
 \ProvidesPackage{finalxm}
-          [2018/04/06 v2.2] 
+          [2019/01/26 v2.3] 
 %% v1.1 use package zref-lastpage & fmtcount to automatically convert number to string (in english) in cover page. 
 %% v1.2 use xstring package to substitute number to string (in malay) in title/cover page
 %% v1.3 added command \figurebm & \tablebm caption in bm for figure & table
@@ -28,7 +28,8 @@
 %% v1.9 renewcommand newparten, newpartenx, translation, & add newcommand translationbf
 %% v2.0 include framed package and a lot of new commands. \makecoverend, \newpartbmx, \figurebm, \figurecaption, \tablecaption, \jadualbf, \arraystretch{value}, \figuretablenumnopart, \figuretablenum, \parten, \partbm, \question{}, \question{[CO1, PO1]}, \partQuestion{}, \partQuestion{[CO1, PO1]}
 %% v2.1 make options for standard, ppkas, ppkb. Make a switch for figure/table numbering to include part & question. 
-%% v2.2 redefine \question{} and \partQuestion{} to include label for \ref. added xparse package. adjust enumerate itemsep=1pc. 
+%% v2.2 [2018/04/06] redefine \question{} and \partQuestion{} to include label for \ref. added xparse package. adjust enumerate itemsep=1pc. 
+%% v2.3 [0219/01/26] add tabulary package. 
 %%
 %\RequirePackage[malay]{babel}
 %\RequirePackage{translations}
@@ -42,10 +43,8 @@
 \RequirePackage{enumitem}	% enumerate questions
 \RequirePackage{fmtcount, zref-lastpage} % for page number
 \RequirePackage[dvipsnames]{xcolor}
-\RequirePackage{graphicx, caption, epstopdf}
-\RequirePackage{float}	% for figure
-\RequirePackage{booktabs}	% for table
-\RequirePackage{tabularx}
+\RequirePackage{graphicx, caption, epstopdf, float} % for figure
+\RequirePackage{booktabs, tabularx, tabulary}	% for table
 \RequirePackage[bookmarksopen=true]{hyperref}
 \RequirePackage[capitalize, nameinlink]{cleveref}
 \RequirePackage{framed}	
@@ -361,7 +360,7 @@
 \newcommand{\paperend}{
 	\centering\bfseries 
 	\vspace{\stretch{1}}
-	-oooOooo-\begingroup\fontsize{0.15pt}{1pt}\selectfont Template by: Mohd Hanafi Mat Som, D.Eng\endgroup	
+	-oooOooo-\begingroup\fontsize{0.5pt}{1pt}\selectfont Template by: Mohd Hanafi Mat Som, D.Eng\endgroup	
 	\vspace{\stretch{1}}\\
 }
 
