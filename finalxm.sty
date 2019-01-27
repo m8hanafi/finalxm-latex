@@ -29,7 +29,8 @@
 %% v2.0 include framed package and a lot of new commands. \makecoverend, \newpartbmx, \figurebm, \figurecaption, \tablecaption, \jadualbf, \arraystretch{value}, \figuretablenumnopart, \figuretablenum, \parten, \partbm, \question{}, \question{[CO1, PO1]}, \partQuestion{}, \partQuestion{[CO1, PO1]}
 %% v2.1 make options for standard, ppkas, ppkb. Make a switch for figure/table numbering to include part & question. 
 %% v2.2 [2018/04/06] redefine \question{} and \partQuestion{} to include label for \ref. added xparse package. adjust enumerate itemsep=1pc. 
-%% v2.3 [0219/01/26] add tabulary package. 
+%% v2.3 [2019/01/26] add tabulary package. 
+%% v2.4 [2019/01/27] add multirow package. 
 %%
 %\RequirePackage[malay]{babel}
 %\RequirePackage{translations}
@@ -44,7 +45,7 @@
 \RequirePackage{fmtcount, zref-lastpage} % for page number
 \RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{graphicx, caption, epstopdf, float} % for figure
-\RequirePackage{booktabs, tabularx, tabulary}	% for table
+\RequirePackage{booktabs, tabularx, tabulary, multirow}	% for table
 \RequirePackage[bookmarksopen=true]{hyperref}
 \RequirePackage[capitalize, nameinlink]{cleveref}
 \RequirePackage{framed}	
@@ -356,7 +357,7 @@
 	\ldots\the\numexpr\value{page}+1\relax/-
 }
 
-% setting end of paper
+%TODO End of paper setting
 \newcommand{\paperend}{
 	\centering\bfseries 
 	\vspace{\stretch{1}}
