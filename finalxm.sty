@@ -8,7 +8,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/06/01]
 \ProvidesPackage{finalxm}
-          [2019/01/26 v2.3] 
+          [2019/04/04 v2.5] 
 %% v1.1 use package zref-lastpage & fmtcount to automatically convert number to string (in english) in cover page. 
 %% v1.2 use xstring package to substitute number to string (in malay) in title/cover page
 %% v1.3 added command \figurebm & \tablebm caption in bm for figure & table
@@ -31,6 +31,7 @@
 %% v2.2 [2018/04/06] redefine \question{} and \partQuestion{} to include label for \ref. added xparse package. adjust enumerate itemsep=1pc. 
 %% v2.3 [2019/01/26] add tabulary package. 
 %% v2.4 [2019/01/27] add multirow package. 
+%% v2.5 [2019/04/04] cover page - translation font of the course 14pt
 %%
 %\RequirePackage[malay]{babel}
 %\RequirePackage{translations}
@@ -288,7 +289,7 @@
 }
 % setting for marks
 \newcommand{\qmarks}[1]{
-	\mbox{}\hfill (#1 Marks /\emph{\fontsize{10pt}{\baselineskip}\selectfont Markah})
+	\mbox{}\hfill (#1 Marks /~\emph{\fontsize{10pt}{\baselineskip}\selectfont Markah})
 }
 % setting for answer 
 \newcommand{\answer}[1]{
@@ -354,7 +355,8 @@
 % display next page
 \newcommand{\nextpage}{%	
 	\vfill \hfill 
-	\ldots\the\numexpr\value{page}+1\relax/-
+%	\ldots\the\numexpr\value{page}+1\relax/-
+	....\the\numexpr\value{page}+1\relax/-
 }
 
 %TODO End of paper setting
@@ -450,7 +452,7 @@
 		Sidang Akademik \@sidang\\[\baselineskip]
 		\@examMonthYear \\[\baselineskip]
 		\textbf{\fontsize{14pt}{\baselineskip}\selectfont \@courseCode~--~\@courseNameEn }\\
-		\textbf{[\@courseNameBM]} \\[\baselineskip]
+		\textbf{[\fontsize{14pt}{\baselineskip}\selectfont \@courseNameBM]} \\[\baselineskip]
 		\if@answer
 			\textbf{ANSWER SCHEME}\\[2\baselineskip]		
 		\else
