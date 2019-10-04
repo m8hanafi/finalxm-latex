@@ -8,7 +8,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/06/01]
 \ProvidesPackage{finalxm}
-          [2019/04/04 v2.5] 
+          [2019/10/04 v2.6] 
 %% v1.1 use package zref-lastpage & fmtcount to automatically convert number to string (in english) in cover page. 
 %% v1.2 use xstring package to substitute number to string (in malay) in title/cover page
 %% v1.3 added command \figurebm & \tablebm caption in bm for figure & table
@@ -32,6 +32,8 @@
 %% v2.3 [2019/01/26] add tabulary package. 
 %% v2.4 [2019/01/27] add multirow package. 
 %% v2.5 [2019/04/04] cover page - translation font of the course 14pt
+%% v2.6	[2019/10/04] add smallskip to the qmarks
+%%					 add bigskip to newpartbm, newpartbmx
 %%
 %\RequirePackage[malay]{babel}
 %\RequirePackage{translations}
@@ -240,9 +242,12 @@
 % initiate new part in malay
 \newcommand{\newpartbm}[1]{%	 	
 	\translation{\textbf{\partbm~\Alph{counterpart}: #1}}
+	\bigskip 
 }
 \newcommand{\newpartbmx}[1]{%
-	\emph{\fontsize{10pt}{\baselineskip}\selectfont\partbm~\Alph{counterpart}: #1}}
+	\emph{\fontsize{10pt}{\baselineskip}\selectfont\partbm~\Alph{counterpart}: #1}
+	\bigskip
+}	
 %
 %% setting the command question %%
 % use xparse package
@@ -289,7 +294,7 @@
 }
 % setting for marks
 \newcommand{\qmarks}[1]{
-	\mbox{}\hfill (#1 Marks /~\emph{\fontsize{10pt}{\baselineskip}\selectfont Markah})
+	\smallskip\mbox{}\hfill (#1 Marks /~\emph{\fontsize{10pt}{\baselineskip}\selectfont Markah})
 }
 % setting for answer 
 \newcommand{\answer}[1]{
@@ -363,7 +368,7 @@
 \newcommand{\paperend}{
 	\centering\bfseries 
 	\vspace{\stretch{1}}
-	-oooOooo-\begingroup\fontsize{0.5pt}{1pt}\selectfont Template by: Mohd Hanafi Mat Som, D.Eng\endgroup	
+	-oooOooo-\begingroup\fontsize{2pt}{1pt}\selectfont Template by: Mohd Hanafi Mat Som, D.Eng\endgroup	
 	\vspace{\stretch{1}}\\
 }
 
