@@ -86,7 +86,7 @@
 	\renewcommand{\headrulewidth}{0pt}
 	\setlength{\headheight}{45pt}
 }
-% set appendix style
+% set paperend style
 \fancypagestyle{submain}{
 	% set default header
 	\pagestyle{fancy}	 
@@ -327,6 +327,10 @@
 \newcommand{\translation}[1]{%
 	\emph{\fontsize{10pt}{\baselineskip}\selectfont [#1]}
 }
+
+% alternative to newcommand
+%\long\def\translation#1{\emph{\fontsize{10pt}{\baselineskip}\selectfont [#1]}}
+
 \newcommand{\translationbf}[1]{%
 	\emph{\fontsize{10pt}{\baselineskip}\selectfont [\textbf{#1}]}
 }
@@ -409,7 +413,7 @@
 	\begin{center}
 		\linespread{0.2}\bfseries 
 		\vspace{\stretch{1}}
-		-oooOooo-{\fontsize{1.5pt}{1pt}\selectfont \\Template by: Mohd Hanafi Mat Som, D.Eng}	
+		-oooOooo-{\fontsize{1pt}{1pt}\selectfont \\\vspace{-0.5mm}Template by: Mohd Hanafi Mat Som, D.Eng}	
 		\vspace{\stretch{1}}
 	\end{center}	
 }
