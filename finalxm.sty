@@ -37,9 +37,10 @@
 %% v2.7 [2019/10/07] add newcommand for appendix 
 %% v2.8 [2019/10/15] renew \paperend to include new pagestyle submain. Nextpage command will stop with \paperend
 %%					 redefine zref lastpage option
+%% v2.9 [2019/11/05] add option shortlabels in enumerate package. 
+%%					 hide instructions & translation in cover page if use answer option
+%%					 excluded framed package 
 %%
-%\RequirePackage[malay]{babel}
-%\RequirePackage{translations}
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{mathptmx}	% closest to times new roman
@@ -47,7 +48,7 @@
 \RequirePackage{siunitx}
 \RequirePackage[a4paper, top=2.3cm, left=2.54cm, right=2.54cm, bottom=3.67cm,nofoot]{geometry} %, footskip=0.6cm
 \RequirePackage{fancyhdr}	% header
-\RequirePackage{enumitem}	% enumerate questions
+\RequirePackage[shortlabels]{enumitem}	% enumerate questions
 \RequirePackage{fmtcount} % for counting page number
 \RequirePackage[lastpage]{zref} % for page number referencing
 \RequirePackage[dvipsnames]{xcolor}
@@ -55,7 +56,6 @@
 \RequirePackage{booktabs, tabularx, tabulary, multirow}	% for table
 \RequirePackage[bookmarksopen=true]{hyperref}
 \RequirePackage[capitalize, nameinlink]{cleveref}
-\RequirePackage{framed}	
 \RequirePackage{xparse}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -260,12 +260,14 @@
 }
 % initiate new part in malay
 \newcommand{\newpartbm}[1]{%	 	
-	\translation{\textbf{\partbm~\Alph{counterpart}: #1}}
+	\if@answer\else\translation{\textbf{\partbm~\Alph{counterpart}: #1}}
 	\bigskip 
+	\fi 
 }
 \newcommand{\newpartbmx}[1]{%
-	\emph{\fontsize{10pt}{\baselineskip}\selectfont\partbm~\Alph{counterpart}: #1}
+	\if@answer\else\emph{\fontsize{10pt}{\baselineskip}\selectfont\partbm~\Alph{counterpart}: #1}
 	\bigskip
+	\fi 
 }	
 %
 \newcommand{\appendixnum}{
@@ -310,14 +312,15 @@
 	\IfNoValueTF{#3}
 	{\stepcounter{counterquestion}
 		{\textbf{Question~\Alph{counterpart}\thecounterquestion~#2} \\
-			\textbf{\emph{\fontsize{10pt}{\baselineskip}\selectfont [Soalan~\Alph{counterpart}\thecounterquestion]}} 			
-			\bigskip}
+			\if@answer\else\textbf{\emph{\fontsize{10pt}{\baselineskip}\selectfont [Soalan~\Alph{counterpart}\thecounterquestion]}} 			
+			\bigskip}\fi 
 		\def\@currentlabel{\thecounterquestion}%
 		\phantomsection#1%
 	}
 	{\stepcounter{counterquestion}{\textbf{Question~\thecounterquestion~#2 \\
-				\textbf{\emph{\fontsize{10pt}{\baselineskip}\selectfont [Soalan~\thecounterquestion]}} 			
+				\if@answer\else\textbf{\emph{\fontsize{10pt}{\baselineskip}\selectfont [Soalan~\thecounterquestion]}} 			
 				\bigskip}
+				\fi 
 			\def\@currentlabel{\thecounterquestion}%
 			\phantomsection#3}%
 	}
@@ -325,14 +328,14 @@
 %
 % setting the command translation
 \newcommand{\translation}[1]{%
-	\emph{\fontsize{10pt}{\baselineskip}\selectfont [#1]}
+	\if@answer\else\emph{\fontsize{10pt}{\baselineskip}\selectfont [#1]}\fi 
 }
 
 % alternative to newcommand
 %\long\def\translation#1{\emph{\fontsize{10pt}{\baselineskip}\selectfont [#1]}}
 
 \newcommand{\translationbf}[1]{%
-	\emph{\fontsize{10pt}{\baselineskip}\selectfont [\textbf{#1}]}
+	\if@answer\else\emph{\fontsize{10pt}{\baselineskip}\selectfont [\textbf{#1}]}\fi 
 }
 % setting for marks
 \newcommand{\qmarks}[1]{
@@ -341,6 +344,7 @@
 % setting for answer 
 \newcommand{\answer}[1]{
 	\begin{footnotesize}
+		\medskip 
 		\color{blue}
 		\if@answer
 			\textbf{[ANSWER]} \\#1
@@ -377,6 +381,7 @@
 %\renewcommand{\labelenumiii}{(\Alph{enumii})}
 %\renewcommand{\labelenumiv}{(\Roman{enumii})}
 
+% package enumitem
 % setup ordered list
 \setlist[enumerate,1]{wide = 0pt, labelwidth = 1.5em, labelsep*=0em, leftmargin = \dimexpr\labelwidth + \labelsep\relax, label=(\alph*), ref=(\alph*)}
 \setlist[enumerate,2]{wide = 0pt, labelwidth = 2em, labelsep*=0em, leftmargin = \dimexpr\labelwidth + \labelsep\relax, label=(\roman*), ref=(\roman*)}
@@ -515,12 +520,15 @@
 		\hrule \vspace*{\baselineskip}
 	\end{center}
 	
-	Please make sure that this question paper has \textbf{\thelastpageSTR~(\thelastpage)} printed pages including this front page before you start the examination.%
+	\if@answer
+	\else
+		Please make sure that this question paper has \textbf{\thelastpageSTR~(\thelastpage)} printed pages including this front page before you start the examination.%	
 	
-	\translation{%
-		Sila pastikan kertas soalan ini mengandungi\textbf{\subnumstr~(\thelastpage)}%
-		~muka  surat yang bercetak termasuk muka hadapan sebelum anda memulakan peperiksaan ini.%
-	}\bigskip
+		\translation{%
+			Sila pastikan kertas soalan ini mengandungi\textbf{\subnumstr~(\thelastpage)}%
+			~muka  surat yang bercetak termasuk muka hadapan sebelum anda memulakan peperiksaan ini.%
+		}\bigskip
+	\fi 
 }
 %%
 %% 
