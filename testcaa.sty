@@ -1,40 +1,15 @@
 %%
-%% This is file `finalxm.sty',
+%% This is file `testcaa.sty', 
 %%
 %% created by
 %% Mohd Hanafi Mat Som
-%% PPK Mekatronik, Universiti Malaysia Perlis
+%% Fakulti of Electronic Engineering Technology, Universiti Malaysia Perlis
 %% msmhanafi [at] gmail.com
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/06/01]
-\ProvidesPackage{finalxm}
-          [2020/12/15 v2.10] 
-%% v1.1 use package zref-lastpage & fmtcount to automatically convert number to string (in english) in cover page. 
-%% v1.2 use xstring package to substitute number to string (in malay) in title/cover page
-%% v1.3 added command \figurebm & \tablebm caption in bm for figure & table
-%% omit a few packages from the .sty file and must be declared in .tex file
-% float, pdflscape, amsmath,amssymb. 
-%% v1.4 added ANSWER SCHEME on the cover page if the "answer" option is selected.
-% edit command \answer and omit command \answerend 
-%% v1.5 add parsep=0pt to listbegin(x) & add space above using captionsetup 
-%% v1.6 fixed fancyheader warning by setting headheight to \setlength{\headheight}{45pt}
-% fixed top and bottom margin by introducing footskip
-% fixed problem with the size of text when bold/italic by redefining \fontsize{10pt}{\baselineskip}\selectfont
-% add inputenc,latexsym, booktabs packages
-% reinclude the packages omitted from ver1.3 except landscape. 
-%% v1.7 set \nextpage command automatically executed at each page break
-%% v1.8 add new package(cleveref) for better figure,table cross ref.
-%% update coverpage according to standard set by BPA.
-%% v1.9 renewcommand newparten, newpartenx, translation, & add newcommand translationbf
-%% v2.0 include framed package and a lot of new commands. \makecoverend, \newpartbmx, \figurebm, \figurecaption, \tablecaption, \jadualbf, \arraystretch{value}, \figuretablenumnopart, \figuretablenum, \parten, \partbm, \question{}, \question{[CO1, PO1]}, \partQuestion{}, \partQuestion{[CO1, PO1]}
-%% v2.1 make options for standard, ppkas, ppkb. Make a switch for figure/table numbering to include part & question. 
-%% v2.2 [2018/04/06] redefine \question{} and \partQuestion{} to include label for \ref. added xparse package. adjust enumerate itemsep=1pc. 
-%% v2.3 [2019/01/26] add tabulary package. 
-%% v2.4 [2019/01/27] add multirow package. 
-%% v2.5 [2019/04/04] cover page - translation font of the course 14pt
-%% v2.6	[2019/10/04] add smallskip to the qmarks
-%%					 add bigskip to newpartbm, newpartbmx
-%% v2.7 [2019/10/07] add newcommand for appendix 
+\ProvidesPackage{testcaa}
+          [2020/12/15 v1.2] 
+%% based on finalxm.sty v2.9
 %% v2.8 [2019/10/15] renew \paperend to include new pagestyle submain. Nextpage command will stop with \paperend
 %%					 redefine zref lastpage option
 %% v2.9 [2019/11/05] add option shortlabels in enumerate package. 
@@ -79,7 +54,7 @@
 	\pagestyle{fancy}	 
 	\fancyhf{}
 	\fancyfoot[R]{{%
-			\ifnum\the\value{page}=\thelastpage \mbox{ } \\[1.5\baselineskip]  
+			\ifnum\value{page}=\thelastpage \mbox{ } \\[1.5\baselineskip]  
 			\textbf{SULIT}\else
 			\nextpage \\[\baselineskip] \textbf{SULIT}\fi}}
 	\lhead{\textbf{SULIT}\\}
@@ -452,9 +427,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO COVER PAGE INPUT %
 %%%%%%%%%%%%%%%%%%%%%%%%%
-% Pertengahan Akhir
-\def\mtefe#1{\gdef\@mtefe{#1}}
-\def\@mtefe{\@latex@warning@no@line{No \noexpand\mtefe given}}
+% Test 1 or 2 
+\def\testnum#1{\gdef\@testnum{#1}}
+\def\@testnum{\@latex@warning@no@line{No \noexpand\testnum given}}
 
 % Semester
 \def\semester#1{\gdef\@semester{#1}}
@@ -507,7 +482,7 @@
 	\hrule \vspace*{3\baselineskip}
 	\begin{center}
 		\textbf{\fontsize{14pt}{\baselineskip}\selectfont UNIVERSITI MALAYSIA PERLIS}\\[\baselineskip]
-		Peperiksaan \@mtefe~Semester \@semester\\
+		Ujian \@testnum~Semester \@semester\\
 		Sidang Akademik \@sidang\\[\baselineskip]
 		\@examMonthYear \\[\baselineskip]
 		\textbf{\fontsize{14pt}{\baselineskip}\selectfont \@courseCode~--~\@courseNameEn }\\
@@ -537,4 +512,4 @@
 %% 
 \endinput
 %%
-%% End of file `finalxm.sty'.
+%% End of file `testcaa.sty'.
