@@ -8,7 +8,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/06/01]
 \ProvidesPackage{finalxm}
-          [2020/12/15 v2.10] 
+          [2020/12/17 v2.11] 
 %% v1.1 use package zref-lastpage & fmtcount to automatically convert number to string (in english) in cover page. 
 %% v1.2 use xstring package to substitute number to string (in malay) in title/cover page
 %% v1.3 added command \figurebm & \tablebm caption in bm for figure & table
@@ -42,6 +42,8 @@
 %%					 excluded framed package 
 %% v2.10 [2020/12/15] fixed getting page number. 
 %%					  use \ifnum\the\value{page} at line 82
+%% v2.11 [2020/12/17] add {0}{KOSONG} for \subnumstr 
+%%					  add test option
 %%
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
@@ -120,6 +122,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TODO OPTIONS DECLARATION %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% test option
+\newif\if@test 
+\DeclareOption{test}{\@testtrue}
+\DeclareOption{notest}{\@testfalse}
+
 % answer scheme option
 \newif\if@answer 
 \DeclareOption{answers}{\@answertrue}
@@ -440,7 +447,7 @@
 \newcommand{\subnumstr}{
 	\bfseries
 	\IfEqCase{\thelastpage}{
-		{1}{SATU}{2}{DUA}{3}{TIGA}{4}{EMPAT}{5}{LIMA}%
+		{0}{KOSONG}{1}{SATU}{2}{DUA}{3}{TIGA}{4}{EMPAT}{5}{LIMA}%
 		{6}{ENAM}{7}{TUJUH}{8}{LAPAN}{9}{SEMBILAN}{10}{SEPULUH}%
 		{11}{SEBELAS}{12}{DUA BELAS}{13}{TIGA BELAS}{14}{EMPAT BELAS}{15}{LIMA BELAS}%
 		{16}{ENAM BELAS}{17}{TUJUH BELAS}{18}{LAPAN BELAS}{19}{SEMBILAN BELAS}{20}{DUA PULUH}%
@@ -507,7 +514,7 @@
 	\hrule \vspace*{3\baselineskip}
 	\begin{center}
 		\textbf{\fontsize{14pt}{\baselineskip}\selectfont UNIVERSITI MALAYSIA PERLIS}\\[\baselineskip]
-		Peperiksaan \@mtefe~Semester \@semester\\
+		\if@test Ujian \else Peperiksaan \fi\@mtefe~Semester \@semester\\
 		Sidang Akademik \@sidang\\[\baselineskip]
 		\@examMonthYear \\[\baselineskip]
 		\textbf{\fontsize{14pt}{\baselineskip}\selectfont \@courseCode~--~\@courseNameEn }\\
